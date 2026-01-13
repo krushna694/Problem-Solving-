@@ -1,0 +1,31 @@
+Given two strings s and t, determine whether t is an anagram of s. Return true if they are anagrams, and false otherwise.
+An anagram is a word formed by rearranging the letters of another word, using all the original letters exactly once.
+Example 1:
+Input: s = "god", t = "dog"
+Output: true
+Example 2:
+Input: s = "can", t = "pan"
+Output: false
+
+class Solution {
+    public boolean isAnagram(String s, String t) {
+        // Check lengths first
+        if (s.length() != t.length()) {
+            return false;
+        }
+
+        int[] count = new int[26];
+        for (int i = 0; i < s.length(); i++) {
+            count[s.charAt(i) - 'a']++;
+            count[t.charAt(i) - 'a']--;
+        }
+
+        // Verify character frequencies match
+        for (int value : count) {
+            if (value != 0) {
+                return false;
+            }
+        }
+        return true;
+    }
+}
